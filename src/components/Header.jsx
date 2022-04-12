@@ -3,37 +3,29 @@ import logo from '../votingbooth.jpg';
 import styled from 'styled-components';
 
 const AppHeader = styled.header`
-    background-color: #282c34;
-    min-height: 10vh;
-    width: 100%
+    background-color: #AA2C13 ;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
-    color: white;
+    justify-content: center;
 `;
 
-const AppLogoLeft = styled.img`
+const AppLogo = styled.img`
     position: absolute;
-    top: 60px;
-    left: 16px;
-    margin: 1rem;
-    height: 8rem;
-    pointer-events: none;
+    height: 10%;
 `;
 
-const AppLogoRight = styled.img`
-    position: absolute;
-    top: 60px;
-    right: 16px;
-    margin: 1rem;
-    height: 8rem;
-    pointer-events: none;
+const AppLogoLeft = styled(AppLogo)`
+    left: 3%;
+`;
+
+const AppLogoRight = styled(AppLogo)`
+    right: 3%;
 `;
 
 const AppTitle = styled.h1`
     font-size: 4rem;
-    line-height: 12rem;
+    color: white;
+    line-height: 5rem;
     font-weight: bold;
     min-width: 300px;
 `;
