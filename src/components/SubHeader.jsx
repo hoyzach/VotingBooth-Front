@@ -6,13 +6,23 @@ const AppSubHeader = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 50px;
+`;
+
+const List = styled.ul`
+    list-style: none;
+    margin: 20px;
+`;
+
+const Wallet = styled.h5`
+    color: white;
 `;
 
 const Button = styled.button`
-    font-size: 26px;
+    font-size: 16px;
     padding: 16px;
     border-radius: 16px;
-    background-color: red;
+    background-color: blue;
     color: white;
     font-weight: bold;
 `;
@@ -21,8 +31,11 @@ const Button = styled.button`
 export default function SubHeader(props) {
     return (
     <AppSubHeader>
-      <Button onClick = {props.requestAccount}>Connect MetaMask</Button>
-      <h3>Wallet Address: {props.walletAddress}</h3>
+        <List>
+            <li><Button onClick = {props.connectWallet}>Connect MetaMask</Button></li>
+            <br/>
+            <li><Wallet>Wallet Address: <font color="yellow">{props.walletAddress}</font></Wallet></li>
+        </List>
     </AppSubHeader>
     );
 }

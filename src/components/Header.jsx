@@ -7,6 +7,8 @@ const AppHeader = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 200px;
+
 `;
 
 const AppLogo = styled.img`
