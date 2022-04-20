@@ -19,6 +19,7 @@ export default function CategoryList(props) {
         <CategoryTable className="table table-secondary table-bordered">
         <thead>
           <CategoryTableHeader>
+            <th>Category</th>
             <th>Candidate1</th>
             <th>Candidate2</th>
             <th>Candidate3</th>
@@ -27,9 +28,11 @@ export default function CategoryList(props) {
           </CategoryTableHeader>
         </thead>
         <tbody>
-          {/*{
-            props.candidateData.map( ({candidate1, candidate2, candidate3, candidate4, candidate5}) => 
+          {
+            props.categoryListData.map( ({key, category, candidate1, candidate2, candidate3, candidate4, candidate5}) => 
               <Category 
+                key={key}
+                category={category}
                 candidate1={candidate1}
                 candidate2={candidate2}
                 candidate3={candidate3}
@@ -38,7 +41,7 @@ export default function CategoryList(props) {
                 handleVote={props.handleVote}
               />
             )
-          }*/}
+          }
         </tbody>
         </CategoryTable>
     );

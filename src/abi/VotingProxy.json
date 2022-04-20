@@ -1,0 +1,5 @@
+[
+  "function _catCounter() view returns (uint64)",
+  "function getCategoryName(uint64) view returns (bytes32)",
+  "function getCandidate(uint64, uint8) view returns  (bytes32)"
+]
