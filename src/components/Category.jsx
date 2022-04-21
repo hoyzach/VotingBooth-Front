@@ -25,7 +25,7 @@ export default function Category(props) {
         return (
             <tr>
                 <CategoryCell>{props.category}</CategoryCell>
-                <CategoryCell>{props.candidate1}<Button>Vote</Button></CategoryCell>
+                <CategoryCell>{props.candidate1}<Button onClick={handleVote}>Vote</Button></CategoryCell>
                 <CategoryCell>{props.candidate2}<Button>Vote</Button></CategoryCell>
                 <CategoryCell>{props.candidate3}<Button>Vote</Button></CategoryCell>
                 <CategoryCell>{props.candidate4}<Button>Vote</Button></CategoryCell>

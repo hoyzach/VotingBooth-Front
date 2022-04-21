@@ -28,9 +28,9 @@ function App(props) {
 
   const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
   const NODE_URL = process.env.REACT_APP_NODE_URL;
-  const provider = new ethers.providers.JsonRpcProvider(NODE_URL);
-  const votingContract = new ethers.Contract(CONTRACT_ADDRESS, votingAbi, provider);
-
+  const rpcProvider = new ethers.providers.JsonRpcProvider(NODE_URL);
+  const votingContract = new ethers.Contract(CONTRACT_ADDRESS, votingAbi, rpcProvider);
+  var provider = {};
 
   const connectWallet = async () => {
     if(window.ethereum) {  
@@ -38,13 +38,13 @@ function App(props) {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        provider = new ethers.providers.Web3Provider(window.ethereum);
         const {chainId} = await provider.getNetwork();
         if(chainId === 4){
           setWalletAddress(accounts[0]);
           canInteract = true;
         } else {
-          setWalletAddress("Please connect to the Rinkeby Network"); //ethers.utils.parseBytes32String(await votingContract.getCategoryName(0)) //ethers.BigNumber.toNumber(await votingContract._catCounter())
+          setWalletAddress("Please connect to the Rinkeby Network");
           canInteract = false;
         }
       } catch (error) {
@@ -53,19 +53,29 @@ function App(props) {
     } else{
       setWalletAddress("Please install MetaMask");
     }
+    return provider;
   };
 
   const componentDidMount = async() => {
     var catCount = await votingContract._catCounter();
-    catCount = catCount.toNumber()
-    const listData = []
+    catCount = catCount.toNumber();
+    var listData = [];
+    var candidate1 = "";
+    var candidate2 = "";
+    var candidate3 = "";
+    var candidate4 = "";
     for (var i = 0; i < catCount; i++){
+      try{ candidate1 = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,0)) } catch(error){candidate1 = "-"}
+      try{ candidate2 = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,1)) } catch(error){candidate2 = "-"}
+      try{ candidate3 = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,2)) } catch(error){candidate3 = "-"}
+      try{ candidate4 = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,3)) } catch(error){candidate4 = "-"}
       const categoryData = { 
         key: i,
         category: ethers.utils.parseBytes32String(await votingContract.getCategoryName(i)),
-        candidate1: ethers.utils.parseBytes32String(await votingContract.getCandidate(i,0)),
-        candidate2: ethers.utils.parseBytes32String(await votingContract.getCandidate(i,1)),
-        candidate3: ethers.utils.parseBytes32String(await votingContract.getCandidate(i,2))
+        candidate1: candidate1,
+        candidate2: candidate2,
+        candidate3: candidate3,
+        candidate4: candidate4
        }
        listData.push(categoryData);
     }
@@ -76,10 +86,15 @@ function App(props) {
       componentDidMount();
     }, [])
 
-  const handleVote = () => {
-    //const signer = provider.getSigner();
+  const handleVote = async() => {
+    provider = await connectWallet();
+    if (canInteract === true){
+      const signer = await provider.getSigner();
+      const interact = votingContract.connect(signer);
+      await interact.castVote(2,2);
+    }
+    else{return}
   }
-
   return (
     <AppDiv>
       <Header/>
