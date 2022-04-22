@@ -20,6 +20,7 @@ export default function CategoryList(props) {
         <thead>
           <CategoryTableHeader>
             <th>Category</th>
+            <th>Category Status</th>
             <th>Candidate1</th>
             <th>Candidate2</th>
             <th>Candidate3</th>
@@ -29,10 +30,11 @@ export default function CategoryList(props) {
         </thead>
         <tbody>
           {
-            props.categoryListData.map( ({key, category, candidate1, candidate2, candidate3, candidate4, candidate5}) => 
+            props.categoryListData.map( ({key, category, categoryStatus, candidate1, candidate2, candidate3, candidate4, candidate5}) => 
               <Category 
                 key={key}
                 category={category}
+                categoryStatus={categoryStatus}
                 candidate1={candidate1}
                 candidate2={candidate2}
                 candidate3={candidate3}
