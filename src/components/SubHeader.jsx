@@ -2,16 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const AppSubHeader = styled.header`
-    background-color: #000000 ;
+    background-color: black;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-height: 50px;
-`;
-
-const List = styled.ul`
-    list-style: none;
-    margin: 20px;
 `;
 
 const Wallet = styled.h5`
@@ -31,11 +26,11 @@ const Button = styled.button`
 export default function SubHeader(props) {
     return (
     <AppSubHeader>
-        <List>
-            <li><Button onClick = {props.connectWallet}>Connect MetaMask</Button></li>
-            <br/>
-            <li><Wallet>Wallet Address: <font color="yellow">{props.walletAddress}</font></Wallet></li>
-        </List>
+        <br/>
+        <Button onClick = {props.connectWallet}>Connect MetaMask</Button>
+        <br/>
+        <Wallet>Wallet Address: <font color="yellow">{props.walletAddress}</font></Wallet>
+        <br/>
     </AppSubHeader>
     );
 }

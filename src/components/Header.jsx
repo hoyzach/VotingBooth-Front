@@ -3,7 +3,7 @@ import logo from '../votingbooth.jpg';
 import styled from 'styled-components';
 
 const AppHeader = styled.header`
-    background-color: white ;
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,9 +27,7 @@ const AppLogoRight = styled(AppLogo)`
 const AppTitle = styled.h1`
     font-size: 4rem;
     color: black;
-    line-height: 5rem;
     font-weight: bold;
-    min-width: 300px;
 `;
 
 export default class Header extends Component {
