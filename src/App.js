@@ -70,7 +70,7 @@ function App(props) {
       const category = ethers.utils.parseBytes32String(await votingContract.getCategoryName(i));
 
       const categoryStatusBool = await votingContract.getCategoryOpen(i);
-      if (categoryStatusBool == true){
+      if (categoryStatusBool === true){
         categoryStatus = "Open for voting";
       }
 
@@ -81,6 +81,7 @@ function App(props) {
 
       const categoryData = { 
         key: i,
+        categoryId: i,
         category: category,
         categoryStatus: categoryStatus,
         candidate1: candidate1,
@@ -98,15 +99,18 @@ function App(props) {
       componentDidMount();
     }, [])
 
-  const handleVote = async() => {
+  const handleVote = async(cat, can) => {
     provider = await connectWallet();
     if (canInteract === true){
       const signer = await provider.getSigner();
       const interact = await votingContract.connect(signer);
-      interact.castVote(2,2);
+      interact.castVote(cat,can);
     }
     else{return}
   }
+
+  
+
   return (
     <AppDiv>
       <Header/>

@@ -10,27 +10,27 @@ const CategoryCell = styled.td`
 
 const Button = styled.button`
     font-size: 11px;
-    width: 64px;
+    width: 40px;
     margin: 3px 5px 0;
 `;
 
 export default function Category(props) {
 
-    const handleVote= (event) => {
+    function handleVote(can) {
         //Prevent the default action of submitting the form
-        event.preventDefault();
-        props.handleVote();
+        //event.preventDefault();
+        props.handleVote(props.categoryId,can);
     }
     
         return (
             <tr>
                 <CategoryCell>{props.category}</CategoryCell>
                 <CategoryCell>{props.categoryStatus}</CategoryCell>
-                <CategoryCell>{props.candidate1}<Button onClick={handleVote}>Vote </Button></CategoryCell>
-                <CategoryCell>{props.candidate2}<Button>Vote</Button></CategoryCell>
-                <CategoryCell>{props.candidate3}<Button>Vote</Button></CategoryCell>
-                <CategoryCell>{props.candidate4}<Button>Vote</Button></CategoryCell>
-                <CategoryCell>{props.candidate5}<Button>Vote</Button></CategoryCell>
+                <CategoryCell>{props.candidate1}<Button onClick={() => {handleVote(0)}}>Vote</Button></CategoryCell>
+                <CategoryCell>{props.candidate2}<Button onClick={() => {handleVote(1)}}>Vote</Button></CategoryCell>
+                <CategoryCell>{props.candidate3}<Button onClick={() => {handleVote(2)}}>Vote</Button></CategoryCell>
+                <CategoryCell>{props.candidate4}<Button onClick={() => {handleVote(3)}}>Vote</Button></CategoryCell>
+                <CategoryCell>{props.candidate5}<Button onClick={() => {handleVote(4)}}>Vote</Button></CategoryCell>
             </tr>
         );
 }

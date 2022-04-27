@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactTable from 'react-table-6';
+import 'react-table-6/react-table.css';
 import Category from './Category';
 import styled from 'styled-components';
 
@@ -21,18 +23,19 @@ export default function CategoryList(props) {
           <CategoryTableHeader>
             <th>Category</th>
             <th>Category Status</th>
-            <th>Candidate1</th>
-            <th>Candidate2</th>
-            <th>Candidate3</th>
-            <th>Candidate4</th>
-            <th>Candidate5</th>
+            <th>Candidate 1</th>
+            <th>Candidate 2</th>
+            <th>Candidate 3</th>
+            <th>Candidate 4</th>
+            <th>Candidate 5</th>
           </CategoryTableHeader>
         </thead>
         <tbody>
           {
-            props.categoryListData.map( ({key, category, categoryStatus, candidate1, candidate2, candidate3, candidate4, candidate5}) => 
+            props.categoryListData.map( ({key, categoryId, category, categoryStatus, candidate1, candidate2, candidate3, candidate4, candidate5}) => 
               <Category 
                 key={key}
+                categoryId={categoryId}
                 category={category}
                 categoryStatus={categoryStatus}
                 candidate1={candidate1}
