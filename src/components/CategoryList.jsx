@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactTable from 'react-table-6';
-import 'react-table-6/react-table.css';
 import Category from './Category';
 import styled from 'styled-components';
 
@@ -18,31 +16,28 @@ const CategoryTableHeader = styled.tr`
 
 export default function CategoryList(props) {
     return (
-        <CategoryTable className="table table-secondary table-bordered">
+        <CategoryTable className="table table-bordered">
         <thead>
           <CategoryTableHeader>
-            <th>Category</th>
-            <th>Category Status</th>
-            <th>Candidate 1</th>
-            <th>Candidate 2</th>
-            <th>Candidate 3</th>
-            <th>Candidate 4</th>
-            <th>Candidate 5</th>
+            <th>CATEGORY</th>
+            <th>CATEGORY STATUS</th>
+            <th>CANDIDATE 1</th>
+            <th>CANDIDATE 2</th>
+            <th>CANDIDATE 3</th>
           </CategoryTableHeader>
         </thead>
         <tbody>
           {
-            props.categoryListData.map( ({key, categoryId, category, categoryStatus, candidate1, candidate2, candidate3, candidate4, candidate5}) => 
+            props.categoryListData.map( ({key, categoryId, rowStyle, category, categoryStatus, candidate1, candidate2, candidate3}) => 
               <Category 
                 key={key}
                 categoryId={categoryId}
+                rowStyle={rowStyle}
                 category={category}
                 categoryStatus={categoryStatus}
                 candidate1={candidate1}
                 candidate2={candidate2}
                 candidate3={candidate3}
-                candidate4={candidate4}
-                candidate5={candidate5}
                 handleVote={props.handleVote}
               />
             )

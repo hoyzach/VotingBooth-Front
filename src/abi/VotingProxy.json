@@ -3,5 +3,6 @@
   "function getCategoryName(uint64) view returns (bytes32)",
   "function getCandidate(uint64, uint8) view returns  (bytes32)",
   "function castVote(uint64, uint8) returns()",
-  "function getCategoryOpen(uint64) view returns (bool)"
+  "function getCategoryOpen(uint64) view returns (bool)",
+  "function _openedOnce(uint64) view returns (bool)"
 ]

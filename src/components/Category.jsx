@@ -21,16 +21,14 @@ export default function Category(props) {
         //event.preventDefault();
         props.handleVote(props.categoryId,can);
     }
-    
         return (
-            <tr>
+            
+            <tr className = {props.rowStyle}>
                 <CategoryCell>{props.category}</CategoryCell>
                 <CategoryCell>{props.categoryStatus}</CategoryCell>
                 <CategoryCell>{props.candidate1}<Button onClick={() => {handleVote(0)}}>Vote</Button></CategoryCell>
                 <CategoryCell>{props.candidate2}<Button onClick={() => {handleVote(1)}}>Vote</Button></CategoryCell>
                 <CategoryCell>{props.candidate3}<Button onClick={() => {handleVote(2)}}>Vote</Button></CategoryCell>
-                <CategoryCell>{props.candidate4}<Button onClick={() => {handleVote(3)}}>Vote</Button></CategoryCell>
-                <CategoryCell>{props.candidate5}<Button onClick={() => {handleVote(4)}}>Vote</Button></CategoryCell>
             </tr>
         );
 }

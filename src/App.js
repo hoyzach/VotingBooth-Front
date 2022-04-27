@@ -12,8 +12,6 @@ import '@fortawesome/fontawesome-free/js/all';
 
 const AppDiv = styled.div`
   text-align: center;
-  background-color: rgb(20,56,9);
-  color: #cccccc;
 `;
 
 function App(props) {
@@ -58,36 +56,40 @@ function App(props) {
     var catCount = await votingContract._catCounter();
     catCount = catCount.toNumber();
 
-    var categoryStatus = "Closed";
+    var categoryStatus = "";
+    var rowStyle = "";
     var listData = [];
     var candidate1 = "-";
     var candidate2 = "-";
     var candidate3 = "-";
-    var candidate4 = "-";
 
     for (var i = 0; i < catCount; i++){
       
       const category = ethers.utils.parseBytes32String(await votingContract.getCategoryName(i));
 
       const categoryStatusBool = await votingContract.getCategoryOpen(i);
-      if (categoryStatusBool === true){
+      const categoryOpenedBool = await votingContract._openedOnce(i);
+      if (categoryStatusBool == true){
         categoryStatus = "Open for voting";
-      }
+        rowStyle = "table-default";
+      } else if (categoryOpenedBool === true){
+        categoryStatus = "The winner is ";
+        rowStyle = "table-dark";
+      } else {categoryStatus = "Closed"; rowStyle = "table-secondary"}
 
       try{ candidate1 = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,0)) } catch(error){}
       try{ candidate2 = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,1)) } catch(error){}
       try{ candidate3 = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,2)) } catch(error){}
-      try{ candidate4 = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,3)) } catch(error){}
 
       const categoryData = { 
         key: i,
         categoryId: i,
+        rowStyle: rowStyle,
         category: category,
         categoryStatus: categoryStatus,
         candidate1: candidate1,
         candidate2: candidate2,
         candidate3: candidate3,
-        candidate4: candidate4
        }
 
        listData.push(categoryData);
@@ -117,10 +119,12 @@ function App(props) {
       <SubHeader
         connectWallet={connectWallet}
         walletAddress={walletAddress}/>
-      <CategoryList 
-        categoryListData={categoryListData} 
-        handleVote={handleVote}
-      />
+      <div className="table-responsive">
+        <CategoryList 
+          categoryListData={categoryListData} 
+          handleVote={handleVote}
+        />
+      </div>
     </AppDiv>
   );
 }
