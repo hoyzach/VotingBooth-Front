@@ -8,7 +8,6 @@ import votingAbi from './abi/VotingProxy.json';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootswatch/dist/flatly/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/js/all';
 
 const AppDiv = styled.div`
   display: flex;
@@ -22,6 +21,7 @@ function App(props) {
 
   const [walletAddress, setWalletAddress] = useState("");
   const [categoryListData, setCategoryListData] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
   const NODE_URL = process.env.REACT_APP_NODE_URL;
@@ -37,6 +37,7 @@ function App(props) {
         });
         provider = new ethers.providers.Web3Provider(window.ethereum);
         const {chainId} = await provider.getNetwork();
+        setErrorMessage("");
         if(chainId === 4){
           setWalletAddress(accounts[0]);
           canInteract = true;
@@ -54,16 +55,15 @@ function App(props) {
   };
 
   const componentDidMount = async() => {
-    
-    var catCount = await votingContract._catCounter();
-    catCount = catCount.toNumber();
 
     var categoryStatus = "";
     var rowStyle = "";
+    var showButton = true;
     var listData = [];
-    var candidate1 = "-";
-    var candidate2 = "-";
-    var candidate3 = "-";
+    var candidate = [];
+
+    var catCount = await votingContract._catCounter();
+    catCount = catCount.toNumber();
 
     for (var i = 0; i < catCount; i++){
       
@@ -71,27 +71,32 @@ function App(props) {
 
       const categoryStatusBool = await votingContract.getCategoryOpen(i);
       const categoryOpenedBool = await votingContract._openedOnce(i);
-      if (categoryStatusBool == true){
+      if (categoryStatusBool){
         categoryStatus = "Open for voting";
         rowStyle = "table-default";
-      } else if (categoryOpenedBool === true){
+        showButton = true;
+      } else if (categoryOpenedBool){
         categoryStatus = "The winner is ";
         rowStyle = "table-dark";
-      } else {categoryStatus = "Closed"; rowStyle = "table-secondary"}
+        showButton = false;
+      } else {categoryStatus = "Opening soon"; rowStyle = "table-secondary"; showButton = false;}
 
-      try{ candidate1 = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,0)) } catch(error){}
-      try{ candidate2 = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,1)) } catch(error){}
-      try{ candidate3 = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,2)) } catch(error){}
+      for (var j = 0; j < 3; j++) {
+
+        try{ candidate[j] = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,j)) } catch(error){}
+
+      }
 
       const categoryData = { 
         key: i,
         categoryId: i,
         rowStyle: rowStyle,
+        showButton: showButton,
         category: category,
         categoryStatus: categoryStatus,
-        candidate1: candidate1,
-        candidate2: candidate2,
-        candidate3: candidate3,
+        candidate1: candidate[0],
+        candidate2: candidate[1],
+        candidate3: candidate[2]
        }
 
        listData.push(categoryData);
@@ -101,26 +106,40 @@ function App(props) {
 
   useEffect(() => {
       componentDidMount();
-    }, [])
+    })
+
 
   const handleVote = async(cat, can) => {
+
     provider = await connectWallet();
     if (canInteract === true){
       const signer = await provider.getSigner();
-      const interact = await votingContract.connect(signer);
-      interact.castVote(cat,can);
+      const interact = votingContract.connect(signer);
+      try{ await interact.castVote(cat,can) } catch(error){ getRPCErrorMessage(error) }
     }
     else{return}
+
   }
 
-  
+  function getRPCErrorMessage(err){
+
+    const open = err.stack.indexOf('{');
+    const close = err.stack.lastIndexOf('}}');
+    const j_s = err.stack.substring(open, close+2);
+    const j = JSON.parse(j_s);
+    const message = j.data[Object.keys(j.data)[0]].message;
+    setErrorMessage(message);
+   
+  }  
 
   return (
+
     <AppDiv>
       <Header/>
       <SubHeader
         connectWallet={connectWallet}
-        walletAddress={walletAddress}/>
+        walletAddress={walletAddress}
+        errorMessage={errorMessage}/>
       <div className="table-responsive">
         <CategoryList 
           categoryListData={categoryListData} 
@@ -128,7 +147,9 @@ function App(props) {
         />
       </div>
     </AppDiv>
+
   );
+  
 }
 
 export default App;

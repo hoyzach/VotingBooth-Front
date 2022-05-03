@@ -22,15 +22,21 @@ const Button = styled.button`
     font-weight: bold;
 `;
 
+const Error = styled.h5`
+    color: red;
+`;
+
 
 export default function SubHeader(props) {
+
     return (
     <AppSubHeader>
         <br/>
         <Button onClick = {props.connectWallet}>Connect MetaMask</Button>
         <br/>
         <Wallet>Wallet Address: <font color="yellow">{props.walletAddress}</font></Wallet>
-        <br/>
+        <Error>{props.errorMessage}</Error>
     </AppSubHeader>
     );
+
 }

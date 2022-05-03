@@ -28,11 +28,12 @@ export default function CategoryList(props) {
         </thead>
         <tbody>
           {
-            props.categoryListData.map( ({key, categoryId, rowStyle, category, categoryStatus, candidate1, candidate2, candidate3}) => 
+            props.categoryListData.map( ({key, categoryId, rowStyle, showButton, category, categoryStatus, candidate1, candidate2, candidate3}) => 
               <Category 
                 key={key}
                 categoryId={categoryId}
                 rowStyle={rowStyle}
+                showButton={showButton}
                 category={category}
                 categoryStatus={categoryStatus}
                 candidate1={candidate1}

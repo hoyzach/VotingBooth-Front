@@ -21,14 +21,22 @@ export default function Category(props) {
         //event.preventDefault();
         props.handleVote(props.categoryId,can);
     }
+
+    function buttonToggle(showButton, can) {
+
+        if (showButton) {
+           return <Button onClick={() => {handleVote(can)}}>Vote</Button>
+        } else {return}
+    }
+
         return (
             
             <tr className = {props.rowStyle}>
                 <CategoryCell>{props.category}</CategoryCell>
                 <CategoryCell>{props.categoryStatus}</CategoryCell>
-                <CategoryCell>{props.candidate1}<Button onClick={() => {handleVote(0)}}>Vote</Button></CategoryCell>
-                <CategoryCell>{props.candidate2}<Button onClick={() => {handleVote(1)}}>Vote</Button></CategoryCell>
-                <CategoryCell>{props.candidate3}<Button onClick={() => {handleVote(2)}}>Vote</Button></CategoryCell>
+                <CategoryCell>{props.candidate1}{buttonToggle(props.showButton, 0)}</CategoryCell>
+                <CategoryCell>{props.candidate2}{buttonToggle(props.showButton, 1)}</CategoryCell>
+                <CategoryCell>{props.candidate3}{buttonToggle(props.showButton, 2)}</CategoryCell>
             </tr>
         );
 }
