@@ -124,7 +124,7 @@ function App(props) {
     else{return}
 
   }
-/*
+
   const handleRegister = async() => {
 
     provider = await connectWallet();
@@ -136,7 +136,6 @@ function App(props) {
     else{return}
 
   }
-*/
 
   function getRPCErrorMessage(err){
 
@@ -155,6 +154,7 @@ function App(props) {
       <Header/>
       <SubHeader
         connectWallet={connectWallet}
+        handleRegister={handleRegister}
         walletAddress={walletAddress}
         errorMessage={errorMessage}/>
       <div className="table-responsive">
