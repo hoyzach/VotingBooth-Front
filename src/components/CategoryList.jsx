@@ -9,7 +9,7 @@ const CategoryTable = styled.table`
 `;
 
 const CategoryTableHeader = styled.tr`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: black;
 `;
