@@ -22,6 +22,7 @@ function App(props) {
   const [walletAddress, setWalletAddress] = useState("");
   const [categoryListData, setCategoryListData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [maxCandidates, setMaxCandidates] = useState(0);
 
   const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
   const NODE_URL = process.env.REACT_APP_NODE_URL;
@@ -56,17 +57,17 @@ function App(props) {
 
   const componentDidMount = async() => {
 
-    var categoryStatus = "";
-    var rowStyle = "";
-    var showButton = true;
     var listData = [];
-    var candidate = [];
 
     var catCount = await votingContract._catCounter();
     catCount = catCount.toNumber();
 
     for (var i = 0; i < catCount; i++){
-      
+
+      var candidates = [];
+      var showButton = true;
+      var categoryStatus = "";
+      var rowStyle = "";
       const category = ethers.utils.parseBytes32String(await votingContract.getCategoryName(i));
 
       const categoryStatusBool = await votingContract.getCategoryOpen(i);
@@ -76,14 +77,18 @@ function App(props) {
         rowStyle = "table-default";
         showButton = true;
       } else if (categoryOpenedBool){
-        categoryStatus = "The winner is ";
+        categoryStatus = "The winner is " + ethers.utils.parseBytes32String(await votingContract.getCategoryWinner(i));
         rowStyle = "table-dark";
         showButton = false;
       } else {categoryStatus = "Opening soon"; rowStyle = "table-secondary"; showButton = false;}
 
-      for (var j = 0; j < 3; j++) {
+      var canCount = await votingContract.getMaxCandidates();
+      canCount = canCount.toNumber();
+      setMaxCandidates(canCount);
+      
+      for (var j = 0; j < maxCandidates; j++) {
 
-        try{ candidate[j] = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,j)) } catch(error){}
+        try{ candidates[j] = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,j)) } catch(error) {}
 
       }
 
@@ -94,12 +99,11 @@ function App(props) {
         showButton: showButton,
         category: category,
         categoryStatus: categoryStatus,
-        candidate1: candidate[0],
-        candidate2: candidate[1],
-        candidate3: candidate[2]
+        candidates: candidates,
        }
 
        listData.push(categoryData);
+       
     }
     setCategoryListData(listData);
   }
@@ -120,6 +124,19 @@ function App(props) {
     else{return}
 
   }
+/*
+  const handleRegister = async() => {
+
+    provider = await connectWallet();
+    if (canInteract === true){
+      const signer = await provider.getSigner();
+      const interact = votingContract.connect(signer);
+      try{ await interact.register() } catch(error){ getRPCErrorMessage(error) }
+    }
+    else{return}
+
+  }
+*/
 
   function getRPCErrorMessage(err){
 
@@ -144,6 +161,7 @@ function App(props) {
         <CategoryList 
           categoryListData={categoryListData} 
           handleVote={handleVote}
+          maxCandidates={maxCandidates}
         />
       </div>
     </AppDiv>
@@ -153,3 +171,6 @@ function App(props) {
 }
 
 export default App;
+
+//expansive columns
+//winner

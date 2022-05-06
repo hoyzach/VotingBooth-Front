@@ -15,20 +15,26 @@ const CategoryTableHeader = styled.tr`
 `;
 
 export default function CategoryList(props) {
+
+  var candidateHeaders = [];
+
+  for (var i = 1; i <= props.maxCandidates; i++){
+    candidateHeaders.push(<th key={i}>CANDIDATE {i}</th>);
+  }
+
     return (
         <CategoryTable className="table table-bordered">
         <thead>
           <CategoryTableHeader>
             <th>CATEGORY</th>
-            <th>CATEGORY STATUS</th>
-            <th>CANDIDATE 1</th>
-            <th>CANDIDATE 2</th>
-            <th>CANDIDATE 3</th>
+            <th>STATUS</th>
+            {candidateHeaders}
+           
           </CategoryTableHeader>
         </thead>
         <tbody>
           {
-            props.categoryListData.map( ({key, categoryId, rowStyle, showButton, category, categoryStatus, candidate1, candidate2, candidate3}) => 
+            props.categoryListData.map( ({key, categoryId, rowStyle, showButton, category, categoryStatus, candidates}) => 
               <Category 
                 key={key}
                 categoryId={categoryId}
@@ -36,9 +42,7 @@ export default function CategoryList(props) {
                 showButton={showButton}
                 category={category}
                 categoryStatus={categoryStatus}
-                candidate1={candidate1}
-                candidate2={candidate2}
-                candidate3={candidate3}
+                candidates={candidates}
                 handleVote={props.handleVote}
               />
             )
