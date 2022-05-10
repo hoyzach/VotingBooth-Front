@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const CategoryCell = styled.td`
     border: 1px solid #cccccc;
-    min-width: 15vw;
     text-align: center;
     vertical-align: center;
+    min-width: 14vmax;
 `;
 
 const Button = styled.button`
