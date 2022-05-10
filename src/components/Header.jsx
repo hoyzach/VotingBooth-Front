@@ -14,7 +14,7 @@ const AppHeader = styled.header`
 const AppLogo = styled.img`
     position: absolute;
     height: 10vmax;
-    max-height: 8%;
+    max-height: 7%;
     min-height: 75px;
 `;
 
@@ -27,7 +27,7 @@ const AppLogoRight = styled(AppLogo)`
 `;
 
 const AppTitle = styled.h1`
-    font-size: calc(20px + 1.5vw);
+    font-size: calc(15px + 1.5vw);
     color: black;
     font-weight: bold;
 `;
