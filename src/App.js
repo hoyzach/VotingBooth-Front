@@ -62,6 +62,10 @@ function App(props) {
     var catCount = await votingContract._catCounter();
     catCount = catCount.toNumber();
 
+    var canCount = await votingContract.getMaxCandidates();
+    canCount = canCount.toNumber();
+    setMaxCandidates(canCount);
+
     for (var i = 0; i < catCount; i++){
 
       var candidates = [];
@@ -72,6 +76,7 @@ function App(props) {
 
       const categoryStatusBool = await votingContract.getCategoryOpen(i);
       const categoryOpenedBool = await votingContract._openedOnce(i);
+
       if (categoryStatusBool){
         categoryStatus = "Open for voting";
         rowStyle = "table-default";
@@ -81,10 +86,6 @@ function App(props) {
         rowStyle = "table-dark";
         showButton = false;
       } else {categoryStatus = "Opening soon"; rowStyle = "table-secondary"; showButton = false;}
-
-      var canCount = await votingContract.getMaxCandidates();
-      canCount = canCount.toNumber();
-      setMaxCandidates(canCount);
       
       for (var j = 0; j < maxCandidates; j++) {
 
