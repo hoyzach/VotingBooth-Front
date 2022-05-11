@@ -19,7 +19,7 @@ function App(props) {
 
   var canInteract = false;
 
-  const [walletAddress, setWalletAddress] = useState("");
+  const [walletAddress, setWalletAddress] = useState("Please connect wallet");
   const [categoryListData, setCategoryListData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [maxCandidates, setMaxCandidates] = useState(0);
@@ -99,7 +99,7 @@ function App(props) {
       
       for (var j = 0; j < maxCandidates; j++) {
 
-        try{ candidates[j] = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,j)) } catch(error) {}
+        try{ candidates[j] = ethers.utils.parseBytes32String(await votingContract.getCandidate(i,j)) } catch(error) {break;};
 
       }
 
