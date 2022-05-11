@@ -66,8 +66,8 @@ export default function SubHeader(props) {
         <Error>{props.errorMessage}</Error>
     </UpperSubHeader>
     <LowerSubHeader>
-        <text>Total Voters Registered: {props.voterCount}</text>
-        <text>Total Votes Submitted: {props.voteCount}</text>
+        <h6>Total Voters Registered: {props.voterCount}</h6>
+        <h6>Total Votes Submitted: {props.voteCount}</h6>
     </LowerSubHeader>
     </>
     );
