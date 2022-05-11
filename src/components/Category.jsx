@@ -5,13 +5,11 @@ const CategoryCell = styled.td`
     border: 1px solid #cccccc;
     text-align: center;
     vertical-align: center;
-    min-width: 14vmax;
-    max-width: 30px;
+    min-width: 22vmin;
 `;
 
 const Button = styled.button`
-    font-size: 11px;
-    width: 40px;
+    font-size: calc(8px + 0.3vw);
     margin: 3px 5px 0;
 `;
 
@@ -35,12 +33,10 @@ export default function Category(props) {
     })
 
         return (
-            
             <tr className = {props.rowStyle}>
                 <CategoryCell>{props.category}</CategoryCell>
                 <CategoryCell>{props.categoryStatus}</CategoryCell>
                 {candidateList}
             </tr>
-
         );
 }

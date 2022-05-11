@@ -3,13 +3,13 @@ import Category from './Category';
 import styled from 'styled-components';
 
 const CategoryTable = styled.table`
-  font-size: 1rem;
+  font-size: calc(8px + 0.3vw);
   text-align: center; 
   vertical-align: middle;
 `;
 
 const CategoryTableHeader = styled.tr`
-  font-size: 1.2rem;
+  font-size: calc(12px + 0.3vw);
   font-weight: bold;
   color: black;
 `;
@@ -29,7 +29,6 @@ export default function CategoryList(props) {
             <th>CATEGORY</th>
             <th>STATUS</th>
             {candidateHeaders}
-           
           </CategoryTableHeader>
         </thead>
         <tbody>
