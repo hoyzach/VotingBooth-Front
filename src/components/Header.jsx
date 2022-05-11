@@ -7,7 +7,7 @@ const AppHeader = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 200px;
+    min-height: 150px;
 
 `;
 

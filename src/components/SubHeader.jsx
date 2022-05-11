@@ -49,8 +49,10 @@ const LowerSubHeader = styled.header`
     align-items: center;
     justify-content: space-around;
     color: white;
-    font-size: calc(8px + 0.3vw);
 `;
+const CountText = styled.h6`
+    font-size: calc(8px + 0.3vw);
+`
 
 export default function SubHeader(props) {
 
@@ -66,8 +68,8 @@ export default function SubHeader(props) {
         <Error>{props.errorMessage}</Error>
     </UpperSubHeader>
     <LowerSubHeader>
-        <h6>Total Voters Registered: {props.voterCount}</h6>
-        <h6>Total Votes Submitted: {props.voteCount}</h6>
+        <CountText>Total Voters Registered: {props.voterCount}</CountText>
+        <CountText>Total Votes Submitted: {props.voteCount}</CountText>
     </LowerSubHeader>
     </>
     );
