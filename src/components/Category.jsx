@@ -5,7 +5,7 @@ const CategoryCell = styled.td`
     border: 1px solid #cccccc;
     text-align: center;
     vertical-align: center;
-    min-width: 22vmin;
+    min-width: 30vmin;
 `;
 
 const Button = styled.button`
