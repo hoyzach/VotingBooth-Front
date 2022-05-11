@@ -7,5 +7,7 @@
   "function _openedOnce(uint64) view returns (bool)",
   "function getMaxCandidates() view returns (uint)",
   "function getCategoryWinner(uint64) view returns(bytes32)",
-  "function register()"
+  "function register()",
+  "function _voterCount() view returns (uint64)",
+  "function _totalVotes() view returns (uint)"
 ]

@@ -23,6 +23,8 @@ function App(props) {
   const [categoryListData, setCategoryListData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [maxCandidates, setMaxCandidates] = useState(0);
+  const [voterCount, setVoterCount] = useState(0);
+  const [voteCount, setVoteCount] = useState(0);
 
   const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
   const NODE_URL = process.env.REACT_APP_NODE_URL;
@@ -65,6 +67,14 @@ function App(props) {
     var canCount = await votingContract.getMaxCandidates();
     canCount = canCount.toNumber();
     setMaxCandidates(canCount);
+
+    var voterCount = await votingContract._voterCount();
+    voterCount = voterCount.toNumber();
+    setVoterCount(voterCount);
+
+    var voteCount = await votingContract._totalVotes();
+    voteCount = voteCount.toNumber();
+    setVoteCount(voteCount);
 
     for (var i = 0; i < catCount; i++){
 
@@ -157,7 +167,9 @@ function App(props) {
         connectWallet={connectWallet}
         handleRegister={handleRegister}
         walletAddress={walletAddress}
-        errorMessage={errorMessage}/>
+        errorMessage={errorMessage}
+        voterCount={voterCount}
+        voteCount={voteCount}/>
       <div className="table-responsive">
         <CategoryList 
           categoryListData={categoryListData} 
