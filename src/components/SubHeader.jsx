@@ -49,7 +49,7 @@ const LowerSubHeader = styled.header`
     align-items: center;
     justify-content: space-around;
     color: white;
-    font-size: calc(10px + 0.3vw);
+    font-size: calc(8px + 0.3vw);
 `;
 
 export default function SubHeader(props) {
