@@ -5,7 +5,7 @@ const CategoryCell = styled.td`
     border: 1px solid #cccccc;
     text-align: center;
     vertical-align: center;
-    min-width: 30vmin;
+    min-width: 33vmin;
 `;
 
 const Button = styled.button`
@@ -16,13 +16,10 @@ const Button = styled.button`
 export default function Category(props) {
 
     function handleVote(can) {
-        //Prevent the default action of submitting the form
-        //event.preventDefault();
         props.handleVote(props.categoryId,can);
     }
 
     function buttonToggle(showButton, can) {
-
         if (showButton) {
            return <Button onClick={() => {handleVote(can)}}>Vote</Button>
         } else {return}
@@ -31,7 +28,7 @@ export default function Category(props) {
     let candidateList = props.candidates.map((candidate, index) => {
         return <CategoryCell key={index}>{candidate}{buttonToggle(props.showButton, index)}</CategoryCell>
     })
-
+    
         return (
             <tr className = {props.rowStyle}>
                 <CategoryCell>{props.category}</CategoryCell>

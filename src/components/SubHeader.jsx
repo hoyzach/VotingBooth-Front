@@ -9,6 +9,11 @@ const UpperSubHeader = styled.header`
     min-height: 50px;
 `;
 
+const Loading = styled.h5`
+    color: red;
+    font-size: calc(12px + 0.3vw);
+`;
+
 const ConnectButton = styled.button`
     font-size: calc(8px + 0.3vw);
     padding: 12px;
@@ -38,7 +43,7 @@ const Address = styled.h5`
     font-size: calc(12px + 0.3vw);
 `;
 
-const Error = styled.h5`
+const Error = styled(Loading)`
     color: red;
     font-size: calc(12px + 0.3vw);
 `;
@@ -55,11 +60,10 @@ const CountText = styled.h6`
 `
 
 export default function SubHeader(props) {
-
     return (
     <>
     <UpperSubHeader>
-        <br></br>
+        <Loading>{props.loadingMessage}</Loading>
         <ConnectButton onClick = {props.connectWallet}>Connect MetaMask</ConnectButton>
         <WalletDiv>
             <RegisterButton onClick = {props.handleRegister}>Register</RegisterButton>

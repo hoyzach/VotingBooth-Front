@@ -33,6 +33,7 @@ const AppTitle = styled.h1`
 `;
 
 export default class Header extends Component {
+    
   render() {
     return (
         <AppHeader>

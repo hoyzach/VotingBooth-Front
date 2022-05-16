@@ -22,31 +22,31 @@ export default function CategoryList(props) {
     candidateHeaders.push(<th key={i}>CANDIDATE {i}</th>);
   }
 
-    return (
-        <CategoryTable className="table table-bordered">
-        <thead>
-          <CategoryTableHeader>
-            <th>CATEGORY</th>
-            <th>STATUS</th>
-            {candidateHeaders}
-          </CategoryTableHeader>
-        </thead>
-        <tbody>
-          {
-            props.categoryListData.map( ({key, categoryId, rowStyle, showButton, category, categoryStatus, candidates}) => 
-              <Category 
-                key={key}
-                categoryId={categoryId}
-                rowStyle={rowStyle}
-                showButton={showButton}
-                category={category}
-                categoryStatus={categoryStatus}
-                candidates={candidates}
-                handleVote={props.handleVote}
-              />
-            )
-          }
-        </tbody>
-        </CategoryTable>
+  return (
+      <CategoryTable className="table table-bordered">
+      <thead>
+        <CategoryTableHeader>
+          <th>CATEGORY</th>
+          <th>STATUS</th>
+          {candidateHeaders}
+        </CategoryTableHeader>
+      </thead>
+      <tbody>
+        {
+          props.categoryListData.map( ({key, categoryId, rowStyle, showButton, category, categoryStatus, candidates}) => 
+            <Category 
+              key={key}
+              categoryId={categoryId}
+              rowStyle={rowStyle}
+              showButton={showButton}
+              category={category}
+              categoryStatus={categoryStatus}
+              candidates={candidates}
+              handleVote={props.handleVote}
+            />
+          )
+        }
+      </tbody>
+      </CategoryTable>
     );
 }

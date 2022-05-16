@@ -25,6 +25,7 @@ function App(props) {
   const [maxCandidates, setMaxCandidates] = useState(0);
   const [voterCount, setVoterCount] = useState(0);
   const [voteCount, setVoteCount] = useState(0);
+  const [loadingMessage, setLoadingMessage] = useState("Please HODL while we contact the blockchain...");
 
   const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
   const NODE_URL = process.env.REACT_APP_NODE_URL;
@@ -119,10 +120,15 @@ function App(props) {
     setCategoryListData(listData);
   }
 
-  useEffect(() => {
-      componentDidMount();
-    })
+  const componentDidUpdate = async() => {
+    setLoadingMessage("");
+  }
 
+  useEffect(function() {
+    if (categoryListData.length === 0) {
+      componentDidMount();
+    } else {componentDidUpdate()} 
+  });
 
   const handleVote = async(cat, can) => {
 
@@ -169,7 +175,9 @@ function App(props) {
         walletAddress={walletAddress}
         errorMessage={errorMessage}
         voterCount={voterCount}
-        voteCount={voteCount}/>
+        voteCount={voteCount}
+        loadingMessage={loadingMessage}
+        />
       <div className="table-responsive">
         <CategoryList 
           categoryListData={categoryListData} 
@@ -184,6 +192,3 @@ function App(props) {
 }
 
 export default App;
-
-//expansive columns
-//winner
