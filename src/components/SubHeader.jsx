@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import logo from '../metamask.png';
 
 const UpperSubHeader = styled.header`
     background-color: black;
@@ -56,14 +57,26 @@ const LowerSubHeader = styled.header`
     color: white;
 `;
 const CountText = styled.h6`
-    font-size: calc(8px + 0.3vw);
-`
+    font-size: calc(8px + 0.3vw)
+`;
+
+const MMLogo = styled.img`
+    position: absolute;
+    align-self: start;
+    margin-left: 15px;
+    margin-top: 5px;
+    height: 5vmax;
+    max-height: 3%;
+    max-width: 30%;
+    min-height: 50px;
+`;
 
 export default function SubHeader(props) {
     return (
     <>
     <UpperSubHeader>
         <Loading>{props.loadingMessage}</Loading>
+        <MMLogo src={logo} alt="Metamask Logo"  onClick={() => props.openInNewTab('https://metamask.io/download/')}/>
         <ConnectButton onClick = {props.connectWallet}>Connect MetaMask</ConnectButton>
         <WalletDiv>
             <RegisterButton onClick = {props.handleRegister}>Register</RegisterButton>

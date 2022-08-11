@@ -154,6 +154,11 @@ function App(props) {
 
   }
 
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  }
+
   function getRPCErrorMessage(err){
 
     const open = err.stack.indexOf('{');
@@ -172,6 +177,7 @@ function App(props) {
       <SubHeader
         connectWallet={connectWallet}
         handleRegister={handleRegister}
+        openInNewTab={openInNewTab}
         walletAddress={walletAddress}
         errorMessage={errorMessage}
         voterCount={voterCount}
