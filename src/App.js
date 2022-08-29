@@ -42,11 +42,11 @@ function App(props) {
         provider = new ethers.providers.Web3Provider(window.ethereum);
         const {chainId} = await provider.getNetwork();
         setErrorMessage("");
-        if(chainId === 4){
+        if(chainId === 5){
           setWalletAddress(accounts[0]);
           canInteract = true;
         } else {
-          setWalletAddress("Please connect to the Rinkeby Network");
+          setWalletAddress("Please connect to the Goerli Network");
           canInteract = false;
         }
       } catch (error) {
