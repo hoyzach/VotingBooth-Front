@@ -1,13 +1,13 @@
 [
-  "function _catCounter() view returns (uint64)",
-  "function getCategoryName(uint64) view returns (bytes32)",
-  "function getCandidate(uint64, uint8) view returns  (bytes32)",
-  "function castVote(uint64, uint8) returns()",
-  "function getCategoryOpen(uint64) view returns (bool)",
-  "function _openedOnce(uint64) view returns (bool)",
+  "function _catCounter() view returns (uint256)",
+  "function getCategoryName(uint256) view returns (bytes32)",
+  "function getCandidate(uint256, uint8) view returns  (bytes32)",
+  "function castVote(uint256, uint8) returns()",
+  "function getCategoryOpen(uint256) view returns (bool)",
+  "function _openedOnce(uint256) view returns (bool)",
   "function getMaxCandidates() view returns (uint)",
-  "function getCategoryWinner(uint64) view returns(bytes32)",
+  "function getCategoryWinner(uint256) view returns(bytes32)",
   "function register()",
-  "function _voterCount() view returns (uint64)",
+  "function _voterCount() view returns (uint128)",
   "function _totalVotes() view returns (uint)"
 ]

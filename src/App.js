@@ -76,7 +76,7 @@ function App(props) {
     var voteCount = await votingContract._totalVotes();
     voteCount = voteCount.toNumber();
     setVoteCount(voteCount);
-
+  
     for (var i = 0; i < catCount; i++){
 
       var candidates = [];
