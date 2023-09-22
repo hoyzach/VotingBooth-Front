@@ -17,7 +17,7 @@ const AppDiv = styled.div`
 
 function App(props) {
 
-  var canInteract = false;
+  var canInteract = false; 
 
   const [walletAddress, setWalletAddress] = useState("Please connect wallet");
   const [categoryListData, setCategoryListData] = useState([]);
