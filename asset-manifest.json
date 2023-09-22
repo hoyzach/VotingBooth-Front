@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Blockchain---Voting-Booth-front/static/css/main.c8cda314.css",
-    "main.js": "/Blockchain---Voting-Booth-front/static/js/main.8e0a8336.js",
-    "static/js/787.dd73929d.chunk.js": "/Blockchain---Voting-Booth-front/static/js/787.dd73929d.chunk.js",
-    "static/media/metamask.png": "/Blockchain---Voting-Booth-front/static/media/metamask.fa6283f4f7aefe3379bd.png",
-    "static/media/votingbooth.jpg": "/Blockchain---Voting-Booth-front/static/media/votingbooth.e27e47bf2af2f9499c66.jpg",
-    "index.html": "/Blockchain---Voting-Booth-front/index.html",
-    "main.c8cda314.css.map": "/Blockchain---Voting-Booth-front/static/css/main.c8cda314.css.map",
-    "main.8e0a8336.js.map": "/Blockchain---Voting-Booth-front/static/js/main.8e0a8336.js.map",
-    "787.dd73929d.chunk.js.map": "/Blockchain---Voting-Booth-front/static/js/787.dd73929d.chunk.js.map"
+    "main.css": "/VotingBooth-Front/static/css/main.c8cda314.css",
+    "main.js": "/VotingBooth-Front/static/js/main.40f4c3b3.js",
+    "static/js/787.dd73929d.chunk.js": "/VotingBooth-Front/static/js/787.dd73929d.chunk.js",
+    "static/media/metamask.png": "/VotingBooth-Front/static/media/metamask.fa6283f4f7aefe3379bd.png",
+    "static/media/votingbooth.jpg": "/VotingBooth-Front/static/media/votingbooth.e27e47bf2af2f9499c66.jpg",
+    "index.html": "/VotingBooth-Front/index.html",
+    "main.c8cda314.css.map": "/VotingBooth-Front/static/css/main.c8cda314.css.map",
+    "main.40f4c3b3.js.map": "/VotingBooth-Front/static/js/main.40f4c3b3.js.map",
+    "787.dd73929d.chunk.js.map": "/VotingBooth-Front/static/js/787.dd73929d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c8cda314.css",
-    "static/js/main.8e0a8336.js"
+    "static/js/main.40f4c3b3.js"
   ]
 }
