@@ -19,14 +19,14 @@
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://hoyzach.github.io/VotingBooth-Front/",
+  "homepage": "https://hoyzach.github.io/VotingBooth-Front",
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
